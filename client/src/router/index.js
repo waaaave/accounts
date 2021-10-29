@@ -2,6 +2,7 @@ import Data from "../views/Data";
 import Home from "../views/Home";
 import User from "../views/User";
 import About from "../views/About"
+import Login from "../views/Login";
 
 const routes = [
   {
@@ -18,6 +19,10 @@ const routes = [
   },{
     path:'/about',
     component:About
+  },
+  {
+    path:'/login',
+    component:Login
   }
 ]
 
