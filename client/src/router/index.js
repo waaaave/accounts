@@ -1,12 +1,21 @@
-import Index from "../views/Index";
-import About from "../views/About";
+import Data from "../views/Data";
+import Home from "../views/Home";
+import User from "../views/User";
+import About from "../views/About"
 
 const routes = [
   {
     path:'/',
-    component:Index
+    component:Home
   },
   {
+    path:'/data',
+    component:Data
+  },
+  {
+    path:'/user',
+    component:User
+  },{
     path:'/about',
     component:About
   }

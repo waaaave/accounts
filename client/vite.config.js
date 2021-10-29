@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import styleImport from 'vite-plugin-style-import'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,6 +26,22 @@ export default defineConfig({
       less:{
         jacascriptEnabled:true
       }
+    }
+  },
+  server:{
+    proxy:{
+      '/api':{
+        target:'http://localhost:5000', // /api/userInfo => http://localhost5000/api/userInfo
+        changeOrigin:true,
+        rewrite:path => path.replace(/^\/api/,'') //仅在开发环境下有效
+      }
+    }
+
+  },
+  resolve:{
+    alias:{
+      '@':path.resolve(__dirname,'src'),
+      'utils':path.resolve(__dirname,'src/utils')
     }
   }
 })
