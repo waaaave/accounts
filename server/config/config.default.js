@@ -34,11 +34,15 @@ module.exports = appInfo => {
       host: 'localhost',
       port: '3306',
       user: 'root',
-      password: 'xfwnxn1023',
+      password: '123456',
       database: 'account'
     },
     app: true,
     agent: false
+  }
+
+  config.jwt = {
+    secret: 'Wave'
   }
 
   return {

@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { Axios } from 'axios'
 import {Toast} from 'zarm'
 
 // vite 中获取环境变量
@@ -10,7 +10,7 @@ axios.defaults.withCredentials = true
 //请求头,当前请求方式是http请求
 axios.defaults.headers['X-Request-With'] = 'XMLHttpRequest'
 // 用户的凭证 , 登陆成功之后，存一个token
-axios.defaults.headers['Authoriztion'] = `${localStorage.getItem('token')||null}`
+axios.defaults.headers['Authorization'] = `${localStorage.getItem('token')||null}`
 
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 //响应拦截
@@ -29,3 +29,5 @@ axios.interceptors.response.use(res=>{
 
   return res.data  //正常返回
 })
+
+export default axios
