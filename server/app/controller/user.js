@@ -39,14 +39,14 @@ class UserController extends Controller {
       ctx.body = {
         code: 200,
         msg: '注册成功',
-        data: null
+        data: null,
       }
     } else {
       // console.log(result);
       ctx.body = {
         code: 500,
         msg: '注册失败',
-        data: null
+        data: null,
       }
     }
 
@@ -54,7 +54,7 @@ class UserController extends Controller {
 
   async login(){
     const { ctx, app } = this
-    const { username, password } = ctx.request.body
+    const { username, password } = ctx.request.body;
     console.log(username, password);
     const userInfo = await ctx.service.user.getUserByName(username)
     if (!userInfo && !userInfo.id) {

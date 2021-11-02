@@ -25,9 +25,9 @@ module.exports = appInfo => {
 
   config.security = {
     csrf: {
-      enable: false
-    }
-  }
+      enable: false,
+    },
+  };
 
   exports.mysql = {
     client: {
@@ -35,15 +35,15 @@ module.exports = appInfo => {
       port: '3306',
       user: 'root',
       password: '123456',
-      database: 'account'
+      database: 'account',
     },
     app: true,
-    agent: false
-  }
+    agent: false,
+  };
 
   config.jwt = {
-    secret: 'Wave'
-  }
+    secret: 'Wave',
+  };
 
   return {
     ...config,

@@ -31,7 +31,7 @@ export default defineConfig({
   server:{
     proxy:{
       '/api':{
-        target:'http://localhost:7001', // /api/userInfo => http://localhost5000/api/userInfo
+        target:'http://localhost:7002', // /api/userInfo => http://localhost5000/api/userInfo
         changeOrigin:true,
         rewrite:path => path.replace(/^\/api/,'') //仅在开发环境下有效
       }

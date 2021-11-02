@@ -11,7 +11,7 @@ class HomeController extends Controller {
   async test() {
     const { ctx } = this;
     ctx.body = {
-      msg: '这是一条测试数据'
+      msg: '这是一条测试数据',
     }
   }
 }

@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Icon, Pull } from 'zarm'
 import dayjs from 'dayjs'
 import BillItem from '@/components/BillItem'
+import PopupType from '../../components/PopupType'
 import { get, REFRESH_STATE, LOAD_STATE } from '@/utils' // Pull 组件需要的一些常量
-
+import CustomIcon from '@/components/CustomIcon'
 import s from './style.module.less'
 
 const Home = () => {
+  const typeRef = useRef();
+  const [currentSelect,setCurrentSelect] = useState({})//当前选定的类型
   const [currentTime, setCurrentTime] = useState(dayjs().format('YYYY-MM')); // 当前筛选时间
   const [page, setPage] = useState(1); // 分页
   const [list, setList] = useState([]); // 账单列表
@@ -40,14 +43,32 @@ const Home = () => {
       setPage(1);
     } else {
       getBillList();
-    };
-  };
+    }
+  }
 
   const loadData = () => {
     if (page < totalPage) {
       setLoading(LOAD_STATE.loading);
       setPage(page + 1);
     }
+  }
+
+  //添加账单
+  const addToggle = () =>{
+
+  }
+  //筛选类型
+  const select = (item) =>{
+    console.log(item);
+    setCurrentSelect(item)
+  }
+
+  //选择账单类型
+  const toggle = () => {
+    typeRef.current && typeRef.current.show(true)
+  }
+  const monthToggle = () => {
+
   }
 
   return <div className={s.home}>
@@ -57,11 +78,11 @@ const Home = () => {
         <span className={s.income}>总收入：<b>¥ 500</b></span>
       </div>
       <div className={s.typeWrap}>
-        <div className={s.left}>
-          <span className={s.title}>类型 <Icon className={s.arrow} type="arrow-bottom" /></span>
+        <div className={s.left} onClick={toggle}>
+          <span className={s.title}>{currentSelect.name||'全部类型'} <Icon className={s.arrow} type="arrow-bottom" /></span>
         </div>
-        <div className={s.right}>
-          <span className={s.time}>2022-06<Icon className={s.arrow} type="arrow-bottom" /></span>
+        <div className={s.right} >
+          <span className={s.time}>2022-06<Icon className={s.arrow} type="arrow-bottom" onClick={monthToggle} /></span>
         </div>
       </div>
     </div>
@@ -89,6 +110,10 @@ const Home = () => {
         </Pull> : null
       }
     </div>
+    <div className={s.add} onClick={addToggle}>
+      <CustomIcon type='tianjia' />
+    </div>
+    <PopupType ref={typeRef} onSelect={select}/>
   </div>
 }
 
