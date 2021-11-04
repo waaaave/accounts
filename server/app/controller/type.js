@@ -4,7 +4,7 @@ const Controller = require('egg').Controller;
 
 class TypeController extends Controller {
   async list() {
-    console.log(11111111);
+    // console.log(11111111);
     const { ctx, app } = this
     let user_id;
     const token = ctx.request.header.authorization

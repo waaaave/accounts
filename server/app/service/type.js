@@ -9,7 +9,7 @@ class TypeService extends Service {
     const sql = `select ${QUERY_STR} from type where user_id = 0 or user_id = ${id}`;
     try {
       const result = await app.mysql.query(sql)
-      console.log(result, '--------------');
+      // console.log(result, '--------------');
       return result;
     } catch (error) {
       console.log(error);
