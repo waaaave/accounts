@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Icon, Pull } from 'zarm'
 import dayjs from 'dayjs'
+import PopupAddList from '@/components/PopupAddList'
 import BillItem from '@/components/BillItem'
 import PopupType from '@/components/PopupType'
 import CustomIcon from '@/components/CustomIcon'
@@ -12,7 +13,9 @@ import s from './style.module.less'
 const Home = () => {
   const typeRef = useRef()
   const monthRef = useRef()
+  const addRef = useRef()
   const [currentSelect, setCurrentSelect] = useState({}) // 当前选中的类型
+  const [currentAddSelect, setCurrentAddSelect] = useState({}) // 当前选中的类型
   const [currentTime, setCurrentTime] = useState(dayjs().format('YYYY-MM')); // 当前筛选时间
   const [page, setPage] = useState(1); // 分页
   const [list, setList] = useState([]); // 账单列表
@@ -65,20 +68,23 @@ const Home = () => {
     monthRef.current && monthRef.current.show()
   }
 
-  // 添加账单
-  const addToggle = () => {
-
-  }
+ 
   // 筛选类型
   const select = (item) => {
     setCurrentSelect(item)
     // 请求当前类型的账单
 
   }
-
   const selectMonth = (item) => {
     // console.log(item);
     setCurrentTime(item)
+  }
+ // 添加账单
+  const addToggle = () => {
+    addRef.current && addRef.current.show()
+  }
+  const selectAdd = (item) => {
+    setCurrentAddSelect(item)
   }
 
   return <div className={s.home}>
@@ -122,6 +128,7 @@ const Home = () => {
     <div className={s.add} onClick={addToggle}><CustomIcon type="tianjia" /></div>
     <PopupType ref={typeRef} onSelect={select}/>
     <PopupDate ref={monthRef} mode="month" onSelect={selectMonth}/>
+    <PopupAddList ref={addRef} onSelect={selectAdd}/>
   </div>
 }
 
