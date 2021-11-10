@@ -19,7 +19,7 @@ const PopupAddList = forwardRef(({ onselect }, ref) => {
     setIncome(list.filter(i => i.type == 1))
   }, [])
 
-  const choseType = (item) => {
+  const choseDate = (item) => {
     setActive(item.id)
     setShow(false)
     onSelect(item)
@@ -50,9 +50,9 @@ const PopupAddList = forwardRef(({ onselect }, ref) => {
         <Icon type="wrong" className={s.cross} onClick={() => setShow(false)} />
         </div>
         <div>
-          <Button className='expense' shape="round" theme="primary">支出</Button>
-          <Button className='income' shape="round" theme="primary">收入</Button>
-          <Button className='date' shape="round" theme="primary">rizi</Button>
+          <Button htmlType="button" size="xs" className='expense' shape="round" theme="primary">支出</Button>
+          <Button htmlType="button" size="xs" className='income' shape="round" theme="primary">收入</Button>
+          <Button htmlType="button" size="xs" className='date' shape="round" theme="primary" onClick={()=>choseDate(item)}>rizi</Button>
         </div>
 
       </div>
